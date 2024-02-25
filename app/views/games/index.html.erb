@@ -1,0 +1,8 @@
+<!-- app/views/games/index.html.erb -->
+<h1>Battleship Game</h1>
+<!-- Add code to display game status -->
+<h1>Upload Input File</h1>
+<%= form_with(url: upload_games_path, multipart: true) do |form| %>
+  <%= form.file_field :input_file %>
+  <%= form.submit "Upload" %>
+<% end %>

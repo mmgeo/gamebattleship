@@ -1,0 +1,21 @@
+<!-- app/views/games/_board.html.erb -->
+<h3>Player <%= player %>'s Board</h3>
+<table>
+  <% game.send("player_#{player}_board").each_with_index do |row, i| %>
+    <tr>
+      <% row.each_with_index do |cell, j| %>
+        <td>
+          <% if cell == :empty %>
+            <%= "-" %>
+          <% elsif cell == :hit %>
+            <%= "X" %>
+          <% elsif cell == :miss %>
+            <%= "O" %>
+          <% else %>
+            <%= cell %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
