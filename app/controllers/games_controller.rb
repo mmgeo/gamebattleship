@@ -1,8 +1,5 @@
 # app/controllers/games_controller.rb
 class GamesController < ApplicationController
-  def new
-    @game = Game.new
-  end
 
   def upload
     File.open("output.txt", "w") do |file|
@@ -13,9 +10,9 @@ class GamesController < ApplicationController
     if input_file
       input_data = input_file.read
       process_input(input_data)
-      flash.now[:notice] =  "Input file uploaded successfully!"
+      flash[:success] = "Input file uploaded successfully!"
     else
-      flash.now[:alert] = "Please select a file to upload."
+      flash[:notice] = "Please select a file to upload."
     end
  
     # Restore standard output
@@ -28,11 +25,8 @@ end
 
   private
 
-  def game_params
-    params.require(:game).permit(:input_file)
-  end
-
   def process_input(input_data)
+    
     # Parse and process the input data here
     # For example, you can split the input lines and extract relevant information
     lines = input_data.split("\n")

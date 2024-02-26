@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_112110) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_26_025853) do
   create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "player_1_board"
-    t.text "player_2_board"
-    t.text "player_1_ships"
-    t.text "player_2_ships"
-    t.integer "current_player"
-    t.string "game_status"
+    t.integer "gridsize"
+    t.integer "totalships"
+    t.string "p1ShipPositions"
+    t.string "p2shipPositions"
+    t.integer "totalMissiles"
+    t.string "p1moves"
+    t.string "p2moves"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,6 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_112110) do
     t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "positions"
+    t.text "hits"
   end
 
 end
