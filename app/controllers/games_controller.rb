@@ -20,6 +20,9 @@ class GamesController < ApplicationController
  
     # Restore standard output
     $stdout = STDOUT
+
+    @output_content = File.read("output.txt")
+
   end
 end
 
@@ -60,6 +63,9 @@ end
     player1hits = process_move("P1", p1ShipPositions, p2moves, gridsize)
     player2hits = process_move("P2", p2shipPositions, p1moves, gridsize)
 
+    puts "P1  :  #{player1hits}"
+    puts "P2  :  #{player2hits}"
+
     if player1hits == player2hits 
       puts "It is a draw"
     elsif player1hits > player2hits 
@@ -90,13 +96,13 @@ end
       row_content = "#{row}:"
       gridsize.times do |col|
         if hit.include?("#{row},#{col}")
-          row_content << " |X"
+          row_content << " X"
         elsif miss.include?("#{row},#{col}")
-          row_content << " |O"
+          row_content << " O"
         elsif alive.include?("#{row},#{col}")
-          row_content << " |B"
+          row_content << " B"
         else
-          row_content << " | "
+          row_content << " _"
         end
       end
       grid << row_content + "\n"
@@ -104,8 +110,7 @@ end
 
     puts grid
 
-    puts "#{player}  :  #{hit.size}"
-
+   return hit.size
    
   end
 
